@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 import AppRoutes from './main/AppRoutes';
-import { useConfigs } from './main/ConfigProvider';
+import Header from './main/Header';
 import Footer from './main/Footer';
-import Header, { menuItems as appMenus } from './main/Header';
+import { useConfigs } from './main/ConfigProvider';
+import { menuItems as appMenus } from './main/Menus';
 
 import Icon, { Icons } from './components/Icons';
 import MainContent from './components/MainContent';

@@ -2,7 +2,7 @@ import * as firestore from "firebase/firestore";
 import { analytics, db, logEvent } from "../configs/firebase";
 import { isDev } from "../configs/siteConfigs";
 
-const maxRequestsPerSecond = 15;
+const maxRequestsPerSecond = 20;
 let requestsOnLastSecond = 0;
 setInterval(() => {
   requestsOnLastSecond = 0;

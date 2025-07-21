@@ -3,75 +3,10 @@ import { Link } from "react-router-dom";
 import './Header.css';
 
 import { useConfigs } from "./ConfigProvider";
-import { isAdmin } from "./configs/siteConfigs";
-import ProductsProvider from "./data/products";
 import MenuItem from "./MenuItemInterface";
 
 import Icon, { Icons } from '../components/Icons';
-import Home from "../pages/Home";
-import ProductsPage from "../pages/Products";
-import WhoWeAre from "../pages/WhoWeAre";
-
-export const booksPageLink = 'livros';
-
-const providers = {
-  course: new ProductsProvider('course'),
-  appointment: new ProductsProvider('appointment'),
-  book: new ProductsProvider('book'),
-  yinYang: new ProductsProvider('yin-yang'),
-  meridians: new ProductsProvider('meridians'),
-  evaluations: new ProductsProvider('evaluations'),
-  therapeuticTechniques: new ProductsProvider('therapeutic-techniques'),
-};
-
-export const menuItems: MenuItem[] = [
-  { name: 'Home', link: '', icon: Icons.solid.faHouse, page: <Home /> },
-  { name: 'Quem Somos', link: 'sobre', icon: Icons.solid.faBuilding, page: <WhoWeAre /> },
-  {
-    name: 'Yin Yang', link: 'yin-yang', params: '/:id?', icon: Icons.solid.faYinYang,
-    provider: providers.yinYang,
-    page: <ProductsPage provider={providers.yinYang} title='Yin Yang' filter={{ category: 'Yin Yang' }} />,
-  },
-  {
-    name: 'Meridianos', link: 'meridianos', params: '/:id?', icon: Icons.solid.faStream,
-    provider: providers.meridians,
-    page: <ProductsPage provider={providers.meridians} title='Meridianos' filter={{ category: 'Meridianos' }} />,
-  },
-  {
-    name: 'Avaliações', link: 'avaliacoes', params: '/:id?', icon: Icons.solid.faClipboardCheck,
-    provider: providers.evaluations,
-    page: <ProductsPage provider={providers.evaluations} title='Avaliações' filter={{ category: 'Avaliações' }} />,
-  },
-  {
-    name: 'Técnicas Terapêuticas', link: 'tecnicas-terapeuticas', params: '/:id?', icon: Icons.solid.faHands,
-    provider: providers.therapeuticTechniques,
-    page: <ProductsPage provider={providers.therapeuticTechniques} title='Técnicas Terapêuticas' filter={{ category: 'Técnicas Terapêuticas' }} />,
-  },
-  // { name: 'Fale com a gente', link: 'fale-conosco', icon: Icons.solid.faHeadset },
-  {
-    name: 'Cursos', link: 'cursos', params: '/:id?', icon: Icons.solid.faChalkboardTeacher,
-    provider: providers.course,
-    page: <ProductsPage provider={providers.course} title="Cursos" />
-  },
-  {
-    name: 'Consultas & Avaliações', params: '/:id?', link: 'atendimentos', icon: Icons.solid.faClipboardList,
-    provider: providers.appointment,
-    page: <ProductsPage provider={providers.appointment} title="Consultas & Avaliações" />
-  },
-  {
-    name: 'Livros & E-Books', params: '/:id?', link: booksPageLink, icon: Icons.solid.faBook,
-    provider: providers.book,
-    page: <ProductsPage provider={providers.book} title="Livros & E-Books" />
-  },
-  // { name: 'Videos', link: 'videos', params: '/:id?', icon: Icons.solid.faVideo },
-  // { name: 'Indicações', link: 'indicacoes', icon: Icons.solid.faStar },
-];
-
-if (isAdmin) {
-  menuItems.push({
-    name: 'Administração', link: 'admin', icon: Icons.solid.faTools, page: null
-  });
-}
+import { menuItems } from "./Menus";
 
 export default function Header() {
   const [menuVisible, setMenuVisible] = useState(false);

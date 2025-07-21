@@ -1,24 +1,17 @@
+import './AdminApp.css';
+
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
-import Icon, { Icons } from '../components/Icons';
 import { configStorage } from "../main/configs/siteConfigs";
-import ProductsProvider from "../main/data/products";
+import { providers } from "../main/Menus";
 import MenuItem from "../main/MenuItemInterface";
-import './AdminApp.css';
+
+import Icon, { Icons } from '../components/Icons';
+
 import AttendantsPage from "./pages/Attemdants/Attendants";
 import ProductsPage from "./pages/Products";
-
-const providers = {
-  appointment: new ProductsProvider('appointment'),
-  course: new ProductsProvider('course'),
-  book: new ProductsProvider('book'),
-  yinYang: new ProductsProvider('yin-yang'),
-  meridians: new ProductsProvider('meridians'),
-  evaluations: new ProductsProvider('evaluations'),
-  therapeuticTechniques: new ProductsProvider('therapeutic-techniques'),
-};
 
 export const menuItems: MenuItem[] = [
   { name: 'Atendentes', link: 'atendentes', params: '/:id?', icon: Icons.solid.faUserMd, page: <AttendantsPage /> },
