@@ -1,6 +1,7 @@
 
 import ConfigsCache, { configStorage } from "../configs/siteConfigs";
 import AbstractProvider from "./provider";
+import { type } from '../../components/Icons';
 
 export interface ProductInfoList {
     title: string;
@@ -30,19 +31,24 @@ export interface Product {
 
 export default class ProductsProvider extends AbstractProvider<Product> {
   private static MAX_HOME_PRODUCTS: number | undefined;
+  private fullName: string;
+  
+  protected requiredFields: (keyof Product)[] = ["name", "description"];
   public collectionName = "products";
   public keys: (keyof Product)[] = [
     "homePosition", "name", "headline", "description", "category", "image", "price", "purchaseUrl", "paymentInfo",
     "youtube", "infos", "reviews", "tags", "attendants"
   ];
-  protected requiredFields: (keyof Product)[] = ["name", "description"];
-  private fullName: string;
-  
+
   constructor(private type?: ProductType) {
     super();
     this.fullName = this.collectionName + this.type;
   }
 
+  public getType(): ProductType|undefined {
+    return this.type;
+  }
+      
   private addAttendantIfNeeded(item: Partial<Product>) {
     const attendent = ConfigsCache.getCachedAttendantId();
     item.attendants = item.attendants ?? [];
