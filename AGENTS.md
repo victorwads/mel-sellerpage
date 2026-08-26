@@ -23,3 +23,11 @@ As workflows em `.github/workflows/` devem ser preservadas e consideradas parte 
 - Não usar operações destrutivas, como reset forçado, para contornar conflitos ou falhas.
 - Conferir a branch e o remote antes do commit e do push.
 - Usar mensagens de commit objetivas e descritivas.
+
+## Autenticação SSH no Windows
+
+No Windows, a chave SSH deste repositório está em:
+
+`C:\Users\melis\.ssh\id_ed25519_mel-sellerpage`
+
+Usar sempre essa chave para operações Git com o GitHub, configurando o SSH com `IdentitiesOnly=yes`. Nunca expor ou compartilhar o arquivo privado; somente a chave `.pub` pode ser cadastrada no GitHub.
