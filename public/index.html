@@ -22,9 +22,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Nosso página">
     <meta name="twitter:description" content="Clique para saber mais informações.">
-    <!-- Google tag (gtag.js) -->
     <script>
-      let gTagBase = 'https://www.googletagmanager.com/gtag/js?id='
       let gTag, gManager;
       if(window.location.hostname.includes('mel')) {
         gTag = 'G-384HWC6PTW'
@@ -43,11 +41,12 @@
       // <!-- End Google Tag Manager -->
 
       // <script async src="https://www.googletagmanager.com/gtag/js?id=G-384HWC6PTW">
-      let googleScript = document.createElement('script')
-      googleScript.async = true
-      googleScript.src = gTagBase + gTag
-      document.head.appendChild(googleScript)
+      // let googleScript = document.createElement('script')
+      // googleScript.async = true
+      // googleScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + gTag
+      // document.head.appendChild(googleScript)
 
+      // <!-- Google tag (gtag.js) -->
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
