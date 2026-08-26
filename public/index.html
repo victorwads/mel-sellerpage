@@ -22,29 +22,49 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Nosso página">
     <meta name="twitter:description" content="Clique para saber mais informações.">
-    Confira abaixo a tag do Google desta conta. Copie e cole-a no código de cada página do seu site, logo após o elemento <head>. Não inclua mais de uma tag do Google em cada página.
+    <!-- Google tag (gtag.js) -->
+    <script>
+      let gTagBase = 'https://www.googletagmanager.com/gtag/js?id='
+      let gTag, gManager;
+      if(window.location.hostname.includes('mel')) {
+        gTag = 'G-384HWC6PTW'
+        gManager = 'GTM-MS47C3T5'
+      } else { // Tom
+        gTag = 'G-1QFNNTYHZG'
+        gManager = 'GTM-K6W6424W'
+      }
 
+      // <!-- Google Tag Manager -->
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer', gManager);
+      // <!-- End Google Tag Manager -->
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-384HWC6PTW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+      // <script async src="https://www.googletagmanager.com/gtag/js?id=G-384HWC6PTW">
+      let googleScript = document.createElement('script')
+      googleScript.async = true
+      googleScript.src = gTagBase + gTag
+      document.head.appendChild(googleScript)
 
-  gtag('config', 'G-384HWC6PTW');
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MS47C3T5');</script>
-<!-- End Google Tag Manager -->
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gTag);
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-384HWC6PTW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-384HWC6PTW');
+    </script>
   </head>
   <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MS47C3T5"
+<!-- Google Tag Manager (noscript) Tom -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K6W6424W"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <noscript>You need to enable JavaScript to run this app.</noscript>
