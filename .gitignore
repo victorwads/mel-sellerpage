@@ -26,3 +26,6 @@ yarn-error.log*
 firebaseConfig.*json
 !firebaseConfig.example.json
 .firebase
+
+# repository-local SSH credentials (never commit)
+/key/*

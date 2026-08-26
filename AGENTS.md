@@ -8,7 +8,7 @@ Quando o usuário pedir para **publicar** uma alteração, isso significa conclu
 
 1. verificar as alterações e executar as validações relevantes;
 2. criar um commit com uma mensagem clara;
-3. enviar (`push`) o commit para a branch remota `master`;
+3. enviar (`push`) o commit para a branch remota `main`;
 4. considerar a tarefa encerrada após o push, sem deixar a publicação apenas no working tree.
 
 Não publicar alterações sem que o usuário peça explicitamente para publicar. Se o push falhar, informar o erro e não considerar a publicação concluída.
@@ -23,11 +23,3 @@ As workflows em `.github/workflows/` devem ser preservadas e consideradas parte 
 - Não usar operações destrutivas, como reset forçado, para contornar conflitos ou falhas.
 - Conferir a branch e o remote antes do commit e do push.
 - Usar mensagens de commit objetivas e descritivas.
-
-## Autenticação SSH no Windows
-
-No Windows, a chave SSH deste repositório está em:
-
-`C:\Users\melis\.ssh\id_ed25519_mel-sellerpage`
-
-Usar sempre essa chave para operações Git com o GitHub, configurando o SSH com `IdentitiesOnly=yes`. Nunca expor ou compartilhar o arquivo privado; somente a chave `.pub` pode ser cadastrada no GitHub.
