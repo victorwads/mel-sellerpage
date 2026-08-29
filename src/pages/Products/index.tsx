@@ -8,6 +8,7 @@ import BannerImage from "../../components/BannerImage";
 import Icon, { getIconByCaseInsensitiveName, Icons } from "../../components/Icons";
 import WhoWeAre from "../WhoWeAre";
 import ProductThumb from "./ProductThumb";
+import { trackProductDetailsScrolled, trackProductView, trackPurchaseIntent } from "../../main/tracking/metaPixel";
 
 import "./Product.css";
 
@@ -43,6 +44,34 @@ export default function ProductsPage({ title, provider }: ProductsPageProps) {
   }, [id, provider]);
 
   useEffect(() => {
+    if (product) trackProductView(product);
+  }, [product]);
+
+  useEffect(() => {
+    if (!product) return;
+
+    let tracked = false;
+    const handleProductScroll = () => {
+      if (tracked) return;
+
+      const root = document.getElementById('root');
+      const pageScrollableHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight,
+        root?.scrollHeight || 0,
+      ) - window.innerHeight;
+      const scrollTop = Math.max(window.scrollY, root?.scrollTop || 0);
+
+      if (pageScrollableHeight > 0 && scrollTop / pageScrollableHeight >= 0.5) {
+        tracked = true;
+        trackProductDetailsScrolled(product);
+      }
+    };
+
+    return registerWindowMoveEvent(handleProductScroll);
+  }, [product]);
+
+  useEffect(() => {
     const handleScroll = () => {
       if(buttonRef.current)
         setShowFloatingButton(!isElementVisible(buttonRef.current))
@@ -72,7 +101,7 @@ export default function ProductsPage({ title, provider }: ProductsPageProps) {
           <span className="price">{formatPrice(product)}</span>
           <span className="paymentType">{product.paymentInfo}</span>
           <div className="spacer"></div>
-          <a className="button-by" href={product.purchaseUrl} ref={buttonRef} style={{
+          <a className="button-by" href={product.purchaseUrl} ref={buttonRef} onClick={() => trackPurchaseIntent(product, "product_detail")} style={{
             backgroundColor: configs.markColor,
           }}><Icon icon={Icons.solid.faCartShopping} />Adquirir</a>
         </div>
@@ -109,7 +138,7 @@ export default function ProductsPage({ title, provider }: ProductsPageProps) {
       }
       <hr style={{borderColor: configs.headerAssentColor}} />
       <WhoWeAre />
-      <a className={`button-by floating${showFloatingButton ? '' : ' hide'}`} href={product.purchaseUrl} style={{
+      <a className={`button-by floating${showFloatingButton ? '' : ' hide'}`} href={product.purchaseUrl} onClick={() => trackPurchaseIntent(product, "product_detail_floating")} style={{
         backgroundColor: configs.markColor,
       }}><Icon icon={Icons.solid.faCartShopping} />Adquirir</a>
     </div>
