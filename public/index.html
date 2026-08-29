@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="" />
-     <meta name="facebook-domain-verification" content="vbysbg2cqqnlpxyosdat643shwrjmc" />
+    <meta name="facebook-domain-verification" content="vbysbg2cqqnlpxyosdat643shwrjmc" />
     <meta name="facebook-domain-verification" content="pk5fif9ybawao21l21lbrid1iavitr" />
    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,24 +32,25 @@
         gTag = 'G-1QFNNTYHZG'
         gManager = 'GTM-K6W6424W'
       }
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        // <!-- Google tag (gtag.js) -->
+        w[l].push(['js', new Date()])
+        w[l].push(['config', gTag])
+        // <!-- Google Tag Manager -->
+        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var
+          f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),
+          dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
 
-      // <!-- Google tag (gtag.js) -->
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', gTag);
-
-      let firstScript = document.getElementsByTagName('script')[0]
-      let googleScript = document.createElement('script')
-      googleScript.async = true
-      googleScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + gTag
-      firstScript.parentNode.insertBefore(googleScript, firstScript)
-
-      // <!-- Google Tag Manager -->
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        var j2=d.createElement(s);
+        j2.async=true;
+        j2.src='https://www.googletagmanager.com/gtag/js?id='+gTag;
+        f.parentNode.insertBefore(j2,f);
       })(window,document,'script','dataLayer', gManager);
       // <!-- End Google Tag Manager -->
     </script>
