@@ -33,6 +33,17 @@
         gManager = 'GTM-K6W6424W'
       }
 
+      // <!-- Google tag (gtag.js) -->
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gTag);
+
+      let googleScript = document.createElement('script')
+      googleScript.async = true
+      googleScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + gTag
+      document.head.insertBefore(googleScript, document.getElementsByTagName('script')[0])
+
       // <!-- Google Tag Manager -->
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -41,16 +52,7 @@
       })(window,document,'script','dataLayer', gManager);
       // <!-- End Google Tag Manager -->
 
-      let googleScript = document.createElement('script')
-      googleScript.async = true
-      googleScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + gTag
-      document.head.appendChild(googleScript)
 
-      // <!-- Google tag (gtag.js) -->
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', gTag);
     </script>
   </head>
   <body>
