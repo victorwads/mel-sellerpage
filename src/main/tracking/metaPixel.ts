@@ -5,6 +5,7 @@ type MetaEventParameters = Record<string, string | number | string[]>;
 declare global {
   interface Window {
     fbq?: (command: "track" | "trackCustom", eventName: string, parameters?: MetaEventParameters) => void;
+    dataLayer?: Array<Record<string, unknown>>;
   }
 }
 
@@ -28,6 +29,15 @@ const productParameters = (product: Product, source: string): MetaEventParameter
 };
 
 const track = (command: "track" | "trackCustom", eventName: string, parameters: MetaEventParameters) => {
+  const googleEventName = eventName
+    .replace(/([a-z0-9])([A-Z])/g, "$1_$2")
+    .toLowerCase();
+
+  window.dataLayer?.push({
+    event: `seller_${googleEventName}`,
+    tracking_event: eventName,
+    ...parameters,
+  });
   window.fbq?.(command, eventName, parameters);
 };
 
@@ -53,4 +63,16 @@ export const trackSocialClick = (network: string, destinationUrl: string) =>
   track("trackCustom", "SocialClick", {
     social_network: network,
     destination_url: destinationUrl,
+  });
+
+export const trackMenuToggle = (isOpen: boolean) =>
+  track("trackCustom", isOpen ? "MenuOpened" : "MenuClosed", {
+    menu_location: "header",
+  });
+
+export const trackMenuNavigation = (itemName: string, destinationPath: string) =>
+  track("trackCustom", "MenuNavigation", {
+    menu_location: "header",
+    menu_item: itemName,
+    destination_path: destinationPath,
   });

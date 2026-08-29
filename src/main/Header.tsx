@@ -11,6 +11,7 @@ import Icon, { Icons } from '../components/Icons';
 import Home from "../pages/Home";
 import ProductsPage from "../pages/Products";
 import WhoWeAre from "../pages/WhoWeAre";
+import { trackMenuNavigation, trackMenuToggle } from "./tracking/metaPixel";
 
 export const booksPageLink = 'livros';
 
@@ -52,14 +53,22 @@ if (isAdmin) {
 export default function Header() {
   const [menuVisible, setMenuVisible] = useState(false);
   const configs = useConfigs();
-  const closeMenu = () => setMenuVisible(false);
+  const closeMenu = () => {
+    setMenuVisible(false);
+    trackMenuToggle(false);
+  };
+  const toggleMenu = () => {
+    const nextVisibility = !menuVisible;
+    setMenuVisible(nextVisibility);
+    trackMenuToggle(nextVisibility);
+  };
 
   return <>
     <header>
       <div className="content">
         <Icon
           icon={Icons.solid.faBars} color={configs.headerAssentColor} size="xl"
-          onClick={() => setMenuVisible(!menuVisible)} />
+          onClick={toggleMenu} />
         <img src={configs.logo} alt="logo" height="90" />
         <Icon icon={Icons.solid.faSearch} color={configs.headerAssentColor} size="xl" />
       </div>
@@ -90,7 +99,12 @@ const MenuItemComponent = ({ item, close }: MenuItemProps) => {
     );
   }, [item.provider, show]);
 
-  return show && <Link to={item.link} title={item.name} key={item.link} onClick={close}>
+  const handleClick = () => {
+    trackMenuNavigation(item.name, item.link);
+    close();
+  };
+
+  return show && <Link to={item.link} title={item.name} key={item.link} onClick={handleClick}>
     <Icon icon={item.icon} color={configs.menuAssentColor || configs.headerAssentColor} />
     {item.name}
   </Link>
