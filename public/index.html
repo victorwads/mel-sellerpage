@@ -39,10 +39,11 @@
       gtag('js', new Date());
       gtag('config', gTag);
 
+      let firstScript = document.getElementsByTagName('script')[0]
       let googleScript = document.createElement('script')
       googleScript.async = true
       googleScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + gTag
-      document.parentNode.insertBefore(googleScript, document.getElementsByTagName('script')[0])
+      firstScript.parentNode.insertBefore(googleScript, firstScript)
 
       // <!-- Google Tag Manager -->
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
