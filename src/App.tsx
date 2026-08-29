@@ -11,6 +11,7 @@ import MainContent from './components/MainContent';
 
 import AdminApp, { menuItems as adminMenus } from './admin/AdminApp';
 import { registerWindowMoveEvent } from './pages/Products';
+import { trackContact } from './main/tracking/metaPixel';
 
 function App() {
   const [floatingBottomMargin, setFloatingBottomMargin] = useState(0);
@@ -31,7 +32,7 @@ function App() {
         <Header />
         <MainContent />
         <Footer />
-        {configs.whatsappLink && <a href={configs.whatsappLink} target='_blank' rel='noreferrer' className='whatszapp floating'>
+        {configs.whatsappLink && <a href={configs.whatsappLink} target='_blank' rel='noreferrer' className='whatszapp floating' onClick={() => trackContact('whatsapp')}>
           <Icon icon={Icons.brands.faWhatsapp} size='3x' />
         </a>}
         {floatingBottomMargin > 20 && <style>{`
